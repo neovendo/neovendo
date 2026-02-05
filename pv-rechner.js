@@ -1,3 +1,23 @@
+function whenReady(fn) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
+  function waitForChart(fn, tries = 40) {
+    if (window.Chart) return fn();
+    if (tries <= 0) return console.error("Chart.js nicht geladen");
+    setTimeout(() => waitForChart(fn, tries - 1), 100);
+  }
+
+  whenReady(() => {
+    waitForChart(() => {
+      // HIER deinen bisherigen Code rein (alles ab centerTextPlugin ...)
+
+
+
 // --- Center Text Plugin (für % in der Donut-Mitte) ---
 const centerTextPlugin = {
   id: 'centerTextPlugin',
@@ -254,3 +274,6 @@ if (pdfBtn) {
     window.print();
   });
 }
+
+    });
+  });
